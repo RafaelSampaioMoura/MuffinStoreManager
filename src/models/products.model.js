@@ -7,15 +7,16 @@ const listAll = async () => {
     .execute(`SELECT * FROM products`)
     // .sort((a, b) => b.id - a.id);
 
-  return result;
+  return camelize(result);
   // console.log("Aqui");
 };
 
 const listById = async (productId) => {
   const [[result]] = await connection.execute(
-    `SELECT FROM products WHERE id = ?`,
+    `SELECT * FROM products WHERE id = ?`,
     [productId]
   );
+  console.log(result);
   return camelize(result);
 };
 
