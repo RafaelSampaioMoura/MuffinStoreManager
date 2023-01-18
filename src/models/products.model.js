@@ -5,9 +5,10 @@ const connection = require("../connection");
 const listAll = async () => {
   const [result] = await connection
     .execute(`SELECT * FROM products`)
-    .sort((a, b) => b.id - a.id);
+    // .sort((a, b) => b.id - a.id);
 
-  return camelize(result);
+  return result;
+  // console.log("Aqui");
 };
 
 const listById = async (productId) => {
