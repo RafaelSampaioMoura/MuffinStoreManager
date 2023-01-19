@@ -3,12 +3,10 @@ const snakeize = require("snakeize");
 const connection = require("../connection");
 
 const listAll = async () => {
-  const [result] = await connection
-    .execute(`SELECT * FROM products`)
-    // .sort((a, b) => b.id - a.id);
+  const [result] = await connection.execute(`SELECT * FROM products`);
+  // .sort((a, b) => b.id - a.id);
 
   return camelize(result);
-  // console.log("Aqui");
 };
 
 const listById = async (productId) => {
@@ -16,23 +14,37 @@ const listById = async (productId) => {
     `SELECT * FROM products WHERE id = ?`,
     [productId]
   );
-  console.log(result);
   return camelize(result);
 };
 
-const insert = async (product) => {
-  const collumns = Object.keys(snakeize(product).join(", "));
+const insert = async ({ name }) => {
+  // console.log(Object.keys(product));
+  // const collumns = Object.keys(snakeize(product).join(", "));
 
-  const placeholders = Object.keys(product)
-    .map((_key) => "?")
-    .join(", ");
+  // const placeholders = Object.keys(product)
+  //   .map((_key) => "?")
+  //   .join(", ");
 
   const [{ insertId }] = await connection.execute(
-    `INSERT INTO products (${collumns}) VALUE(${placeholders})`,
-    [...Object.values(product)]
+    `INSERT INTO products (name) VALUE(?)`,
+    [name]
   );
 
   return insertId;
 };
 
-module.exports = { listAll, listById, insert };
+const update = async ({ productId, newProductName }) => {
+  const [{ affectedRows }] = connection.execute(
+    `UPDATE products SET name = ? WHERE id = ?`,
+    [newProductName, productId]
+  );
+  console.log(productId);
+  console.log(newProductName);
+  console.log(affectedRows);
+
+  return affectedRows;
+};
+
+const erase = async () => {};
+
+module.exports = { listAll, listById, insert, update };

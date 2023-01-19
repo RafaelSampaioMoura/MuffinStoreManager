@@ -12,7 +12,7 @@ const findById = async (productId) => {
 
   const product = await productsModel.listById(productId);
   if (!product) {
-    console.log("aqui!");
+    // console.log("aqui!");
     return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
   } else {
     return { type: null, message: product };
@@ -20,17 +20,42 @@ const findById = async (productId) => {
 };
 
 const createProduct = async (name) => {
-  const error = schema.validateNewPassenger(name);
+  const error = schema.validateProductName(name);
   if (error.type) return error;
 
-  const newPassengerId = await passengerModel.insert({ name });
-  const newPassenger = await passengerModel.findById(newPassengerId);
+  const newProductId = await productsModel.insert({ name });
+  const newProduct = await productsModel.listById(newProductId);
 
-  return { type: null, message: newPassenger };
+  return { type: null, message: newProduct };
+};
+
+const updateProduct = async (id, name) => {
+  const invalidId = schema.validateId(id);
+  // console.log(invalidId);
+  if (invalidId.type) return invalidId;
+
+  const productExists = await productsModel.listById(id);
+  // console.log(productExists);
+  if (!productExists) {
+    return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
+  }
+
+  const invalidName = await schema.validateProductName(name);
+  // console.log(invalidName);
+  if (invalidName.type) return invalidName;
+
+  const updatedProduct = await productsModel.update({ id, name });
+  // console.log(updatedProduct);
+  if (updatedProduct !== 1) {
+    return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
+  }
+
+  return { type: null, message: { id, name } };
 };
 
 module.exports = {
   findAll,
   findById,
   createProduct,
+  updateProduct,
 };

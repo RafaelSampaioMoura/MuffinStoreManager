@@ -12,5 +12,100 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "e1c439a4-290d-4d90-8cf5-194c2fecdc24",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/1",
+    "url": "localhost:3000/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-01-19T12:54:18.121Z",
+    "modified": "2023-01-19T12:54:18.121Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": \"1\",\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b07a150e-0832-45cf-ad5e-e872a68aaf19",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/1",
+    "url": "localhost:3000/products/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-01-19T12:54:47.320Z",
+    "modified": "2023-01-19T12:54:47.320Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": \"1\",\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ef54e702-2205-46e7-a864-c06bcacbdad3",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/1",
+    "url": "localhost:3000/products/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-01-19T12:55:06.073Z",
+    "modified": "2023-01-19T12:55:06.073Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id\": \"1\",\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6ca4036c-d652-4dad-9e77-5611c41599f3",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000;products",
+    "url": "localhost:3000;products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-19T13:11:11.758Z",
+    "modified": "2023-01-19T13:11:11.758Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Objecto\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bbb38ec6-a506-463c-afcd-221148460c10",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products",
+    "url": "localhost:3000/products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-19T13:11:17.546Z",
+    "modified": "2023-01-19T13:11:17.546Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Objecto\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
