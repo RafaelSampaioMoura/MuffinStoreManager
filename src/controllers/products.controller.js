@@ -1,4 +1,4 @@
-const productsService = require("../services/products.service");
+const productsService = require('../services/products.service');
 
 const listProducts = async (_req, res) => {
   const { type, message } = await productsService.findAll();
@@ -15,10 +15,9 @@ const getProductById = async (req, res) => {
   // console.log(message);
 
   if (type) {
-    return res.status(404).json({ message: "Product not found" });
-  } else {
+    return res.status(404).json({ message: 'Product not found' });
+  } 
     res.status(200).json(message);
-  }
 };
 
 const createProduct = async (req, res) => {
@@ -40,10 +39,9 @@ const updateProduct = async (req, res) => {
   console.log(name);
 
   if (type) {
-    return res.status(404).json({ message: "Product not found" });
-  } else {
+    return res.status(404).json({ message: 'Product not found' });
+  } 
     res.status(200).json(message);
-  }
 };
 
 const eraseProduct = async (req, res) => {
@@ -51,10 +49,9 @@ const eraseProduct = async (req, res) => {
   const { type, message } = await productsService.eraseProduct(id);
 
   if (type) {
-    return res.status(404).json({ message: "Product not found" });
-  } else {
+    return res.status(404).json({ message: 'Product not found' });
+  } 
     res.status(204).json(message);
-  }
 };
 
 module.exports = {
