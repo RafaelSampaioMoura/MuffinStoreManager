@@ -44,6 +44,13 @@ const update = async (productId, newProductName) => {
   return affectedRows;
 };
 
-const erase = async () => {};
+const erase = async (productId) => {
+  const [{ affectedRows }] = await connection.execute(
+    `DELETE FROM products WHERE id = ?`,
+    [productId]
+  );
 
-module.exports = { listAll, listById, insert, update };
+  return affectedRows;
+};
+
+module.exports = { listAll, listById, insert, update, erase };

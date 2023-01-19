@@ -44,13 +44,32 @@ const updateProduct = async (id, name) => {
   // console.log(invalidName);
   if (invalidName.type) return invalidName;
 
-  const updatedProduct = await productsModel.update(id, name);
-  console.log(updatedProduct);
-  if (updatedProduct !== 1) {
+  const affectedRows = await productsModel.update(id, name);
+  // console.log(updatedProduct);
+  if (affectedRows !== 1) {
     return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
   }
 
   return { type: null, message: { id, name } };
+};
+
+const eraseProduct = async (id) => {
+  const invalidId = schema.validateId(id);
+  // console.log(invalidId);
+  if (invalidId.type) return invalidId;
+
+  const productExists = await productsModel.listById(id);
+  // console.log(productExists);
+  if (!productExists) {
+    return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
+  }
+
+  const affectedRows = await productsModel.erase(id);
+  if (affectedRows !== 1) {
+    return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
+  }
+
+  return { type: null, message: "" };
 };
 
 module.exports = {
@@ -58,4 +77,5 @@ module.exports = {
   findById,
   createProduct,
   updateProduct,
+  eraseProduct,
 };
