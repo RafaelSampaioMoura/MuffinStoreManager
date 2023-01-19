@@ -44,8 +44,8 @@ const updateProduct = async (id, name) => {
   // console.log(invalidName);
   if (invalidName.type) return invalidName;
 
-  const updatedProduct = await productsModel.update({ id, name });
-  // console.log(updatedProduct);
+  const updatedProduct = await productsModel.update(id, name);
+  console.log(updatedProduct);
   if (updatedProduct !== 1) {
     return { type: "PRODUCT_NOT_FOUND", message: "Product not found" };
   }

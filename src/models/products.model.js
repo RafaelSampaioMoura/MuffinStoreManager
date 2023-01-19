@@ -33,13 +33,12 @@ const insert = async ({ name }) => {
   return insertId;
 };
 
-const update = async ({ productId, newProductName }) => {
-  const [{ affectedRows }] = connection.execute(
+const update = async (productId, newProductName) => {
+  const [{ affectedRows }] = await connection.execute(
     `UPDATE products SET name = ? WHERE id = ?`,
     [newProductName, productId]
   );
-  console.log(productId);
-  console.log(newProductName);
+  // console.log(result);
   console.log(affectedRows);
 
   return affectedRows;
