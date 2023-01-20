@@ -17,4 +17,8 @@ const newProduct = {
   name: "Jaqueta da Feitiçeira Escarlate",
 };
 
-module.exports = { products, newProduct };
+const updateProduct = {
+  name: "Martelo do Batman",
+};
+
+module.exports = { products, newProduct, updateProduct };

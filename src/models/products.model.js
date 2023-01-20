@@ -39,7 +39,7 @@ const update = async (productId, newProductName) => {
     [newProductName, productId],
   );
   // console.log(result);
-  console.log(affectedRows);
+  // console.log(affectedRows);
 
   return affectedRows;
 };
