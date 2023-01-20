@@ -1,7 +1,7 @@
-const { productsModel } = require("../models");
-const schema = require("./validations/validationsInputValues");
+const { productsModel } = require('../models');
+const schema = require('./validations/validationsInputValues');
 
-const PRODUCT_NOT_FOUND = "Product not found";
+const PRODUCT_NOT_FOUND = 'Product not found';
 
 const findAll = async () => {
   const products = await productsModel.listAll();
@@ -15,7 +15,7 @@ const findById = async (productId) => {
   const product = await productsModel.listById(productId);
   if (!product) {
     // console.log("aqui!");
-    return { type: "PRODUCT_NOT_FOUND", message: PRODUCT_NOT_FOUND };
+    return { type: 'PRODUCT_NOT_FOUND', message: PRODUCT_NOT_FOUND };
   }
   return { type: null, message: product };
 };
@@ -38,7 +38,7 @@ const updateProduct = async (id, name) => {
   const productExists = await productsModel.listById(id);
   // console.log(productExists);
   if (!productExists) {
-    return { type: "PRODUCT_NOT_FOUND", message: PRODUCT_NOT_FOUND };
+    return { type: 'PRODUCT_NOT_FOUND', message: PRODUCT_NOT_FOUND };
   }
 
   const invalidName = await schema.validateProductName(name);
@@ -62,7 +62,7 @@ const eraseProduct = async (id) => {
   const productExists = await productsModel.listById(id);
   // console.log(productExists);
   if (!productExists) {
-    return { type: "PRODUCT_NOT_FOUND", message: PRODUCT_NOT_FOUND };
+    return { type: 'PRODUCT_NOT_FOUND', message: PRODUCT_NOT_FOUND };
   }
 
   const affectedRows = await productsModel.erase(id);
@@ -70,7 +70,7 @@ const eraseProduct = async (id) => {
     return { type: 'PRODUCT_NOT_FOUND', message: PRODUCT_NOT_FOUND };
   }
 
-  return { type: null, message: "" };
+  return { type: null, message: '' };
 };
 
 module.exports = {
