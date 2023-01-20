@@ -2,8 +2,8 @@ const { expect } = require("chai");
 const connection = require("../../../src/connection");
 const sinon = require("sinon");
 
-const { productsModel, newProduct } = require("../../../src/models");
-const products = require("./mocks/product.model.mock");
+const { productsModel } = require("../../../src/models");
+const { products, newProduct } = require("./mocks/product.model.mock");
 
 describe("Testando os modelos", function () {
   it('Testando função "listAll" do projectModel', async function () {
@@ -12,7 +12,7 @@ describe("Testando os modelos", function () {
     //Act
     const result = await productsModel.listAll();
     //Assert
-    expect(result).to.be.deep.equal(productsModel);
+    expect(result).to.be.deep.equal(products);
   });
 
   it('Testando função "listById" do projectModel', async function () {

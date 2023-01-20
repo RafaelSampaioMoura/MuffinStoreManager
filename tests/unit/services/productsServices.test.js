@@ -3,8 +3,6 @@ const sinon = require("sinon");
 const { productsService } = require("../../../src/services");
 const { productsModel } = require("../../../src/models");
 
-const { allProducts } = require("./mocks/products.service.mock");
-
 const {
   invalidValue,
   validName,
@@ -14,7 +12,7 @@ const {
 describe("Testando os serviços", function () {
   it('Testando a função "findAll" do productsService', async function () {
     //Arrange
-    sinon.stub(productsModel, "findAll").resolves(allProducts);
+    sinon.stub(productsModel, "listAll").resolves(allProducts);
     //Act
     const result = await productsService.findAll();
     //Assert
@@ -40,7 +38,7 @@ describe("Testando busca de produto por ID", function () {
 
   it("Retorna um erro caso o produto não exista", async function () {
     //Arrange
-    sinon.stub(productsModel, "findById").resolves(undefined);
+    sinon.stub(productsModel, "listById").resolves(undefined);
 
     //Act
     const result = await productsService.findById(1);
@@ -52,7 +50,7 @@ describe("Testando busca de produto por ID", function () {
 
   it("Retorna o producto buscado caso o ID exista", async function () {
     //Arrange
-    sinon.stub(productsModel, "findById").resolves(allProducts[0]);
+    sinon.stub(productsModel, "listById").resolves(allProducts[0]);
 
     //Act
     const result = await productsService.findById(1);
@@ -82,7 +80,7 @@ describe("Testando o cadastro de um novo produto", async function () {
   it("Retorna o ID do novo produto cadastrado", async function () {
     //Arrange
     sinon.stub(productsModel, "insert").resolves(4);
-    sinon.stub(productsModel, "findById").resolves(allProducts[0]);
+    sinon.stub(productsModel, "listById").resolves(allProducts[0]);
     //Act
     const result = await productsService.createProduct(validName);
     //Assert
