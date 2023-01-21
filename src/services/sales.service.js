@@ -32,12 +32,7 @@ const getSaleById = async (saleId) => {
 };
 
 const registerSale = async (salesArr) => {
-  salesArr.map((sale) => {
-    const error = schema.validateSaleObject(sale);
-    if (error.type) return error;
-
-    return sale;
-  });
+  schema.validateSalesArray(salesArr);
 
   const allProductsExist = await Promise.all(
     salesArr.map(async ({ productId }) => productExist(productId)),
@@ -61,9 +56,30 @@ const eraseSale = async (salesId) => {
   return { type: null, message: '' };
 };
 
+const updateSale = async (id, salesArr) => {
+  schema.validateSalesArray(salesArr);
+
+  const allProductsExist = await Promise.all(
+    salesArr.map(async ({ productId }) => productExist(productId)),
+  );
+
+  if (!allProductsExist.every((e) => e === true)) {
+    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  }
+
+  const checkSale = await getSaleById(id);
+  if (checkSale.type) {
+    return { type: 'SALE_NOT_FOUND', message: SALE_NOT_FOUND };
+  }
+
+  const updatedSale = await salesModel.updateSale(id, salesArr);
+  return { type: null, message: updatedSale };
+};
+
 module.exports = {
   registerSale,
   getAllSales,
   getSaleById,
   eraseSale,
+  updateSale,
 };

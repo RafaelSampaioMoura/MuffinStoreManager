@@ -40,9 +40,21 @@ const eraseProduct = async (req, res) => {
   res.status(204).json(message);
 };
 
+const updateSale = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await salesService.updateSale(id, req.body);
+
+  if (type) {
+    res.status(404).json({ message });
+  } else {
+    res.status(200).json(message);
+  }
+};
+
 module.exports = {
   registerSale,
   getAllSales,
   getSaleById,
   eraseProduct,
+  updateSale,
 };

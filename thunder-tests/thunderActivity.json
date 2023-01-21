@@ -196,5 +196,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "315bdcb4-eea5-40f6-86fc-c87ca3c1092a",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/sales/1",
+    "url": "localhost:3000/sales/1",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-01-21T20:38:09.177Z",
+    "modified": "2023-01-21T20:50:16.572Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\"productId\":1,\"quantity\":1},\n  {\"productId\":2,\"quantity\":5}\n]",
+      "form": []
+    },
+    "tests": []
   }
 ]

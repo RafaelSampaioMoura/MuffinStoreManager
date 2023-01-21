@@ -18,7 +18,6 @@ const validateProductName = (name) => {
 
   return { type: null, message: '' };
 };
-
 const validateSaleObject = (sale) => {
   const error = addSaleProduct.validate(sale);
   if (error) {
@@ -28,8 +27,17 @@ const validateSaleObject = (sale) => {
   return { type: null, message: '' };
 };
 
+const validateSalesArray = (salesArr) => {
+  salesArr.map((sale) => {
+    const error = validateSaleObject(sale);
+    if (error.type) return error;
+
+    return sale;
+  });
+};
+
 module.exports = {
   validateId,
   validateProductName,
-  validateSaleObject,
+  validateSalesArray,
 };

@@ -53,9 +53,26 @@ const eraseSale = async (saleId) => {
   return affectedRows;
 };
 
+const updateSale = async (id, salesArr) => {
+  console.log(id);
+  const sale = await Promise.all(
+    salesArr.map(async ({ productId, quantity }) => {
+      await connection.execute(
+        'UPDATE sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',
+        [quantity, id, productId],
+      );
+
+      return { productId, quantity };
+    }),
+  );
+
+  return { saleId: id, itemsUpdated: sale };
+};
+
 module.exports = {
   registerSale,
   getAllSales,
   getSaleById,
   eraseSale,
+  updateSale,
 };
