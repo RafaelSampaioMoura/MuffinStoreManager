@@ -16,8 +16,8 @@ const getProductById = async (req, res) => {
 
   if (type) {
     return res.status(404).json({ message: 'Product not found' });
-  } 
-    res.status(200).json(message);
+  }
+  res.status(200).json(message);
 };
 
 const createProduct = async (req, res) => {
@@ -40,8 +40,8 @@ const updateProduct = async (req, res) => {
 
   if (type) {
     return res.status(404).json({ message: 'Product not found' });
-  } 
-    res.status(200).json(message);
+  }
+  res.status(200).json(message);
 };
 
 const eraseProduct = async (req, res) => {
@@ -50,8 +50,17 @@ const eraseProduct = async (req, res) => {
 
   if (type) {
     return res.status(404).json({ message: 'Product not found' });
-  } 
-    res.status(204).json(message);
+  }
+  res.status(204).json(message);
+};
+
+const searchByName = async (req, res) => {
+  const { q } = req.query;
+  const { type, message } = await productsService.searchByName(q);
+
+  if (!type) {
+    res.status(200).json(message);
+  }
 };
 
 module.exports = {
@@ -60,4 +69,5 @@ module.exports = {
   createProduct,
   updateProduct,
   eraseProduct,
+  searchByName,
 };

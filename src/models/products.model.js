@@ -55,4 +55,18 @@ const erase = async (productId) => {
   return affectedRows;
 };
 
-module.exports = { listAll, listById, insert, update, erase };
+const searchByName = async (name) => {
+  if (name.length === 0) {
+    const [result] = await connection.execute('SELECT * FROM products');
+
+    return result;
+  } 
+    const [result] = await connection.execute(
+      'SELECT * FROM products WHERE name LIKE CONCAT (\'%\', ?, \'%\')',
+      [name],
+    );
+
+    return result;
+};
+
+module.exports = { listAll, listById, insert, update, erase, searchByName };

@@ -73,10 +73,20 @@ const eraseProduct = async (id) => {
   return { type: null, message: '' };
 };
 
+const searchByName = async (name) => {
+  if (name.length === 0) {
+    const allProducts = await findAll();
+    return allProducts;
+  } 
+    const matchedProducts = await productsModel.searchByName(name);
+    return { type: null, message: matchedProducts };
+};
+
 module.exports = {
   findAll,
   findById,
   createProduct,
   updateProduct,
   eraseProduct,
+  searchByName,
 };
