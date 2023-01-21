@@ -107,5 +107,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "9d810e68-d037-4b0c-8347-4ab1608a73bb",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/sales",
+    "url": "localhost:3000/sales",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-01-21T17:59:54.050Z",
+    "modified": "2023-01-21T18:00:13.057Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"quantity\": 1\n  }\n]",
+      "form": []
+    },
+    "tests": []
   }
 ]

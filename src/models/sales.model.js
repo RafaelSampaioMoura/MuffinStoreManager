@@ -1,25 +1,24 @@
-// const connection = require('../connection');
+const connection = require('../connection');
 
-// const registerSale = async (salesArr) => {
-//   const [{ insertid }] = connection.execute(
-//     'INSERT INTO sales (date) VALUE (NOW())',
-//   );
+const registerSale = async (salesArr) => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO sales (date) VALUE (NOW())',
+  );
 
-//   salesArr.forEach(async (sale) => {
-//     console.log(Object.keys(sale));
-//     const collumns = Object.keys(snakeize(sale).join(', '));
+  const sale = await Promise.all(
+    salesArr.map(async ({ productId, quantity }) => {
+      await connection.execute(
+        'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES(?, ?, ?)',
+        [insertId, productId, quantity],
+      );
 
-//     const placeholders = Object.keys(sale)
-//       .map((_key) => '?')
-//       .join(', ');
+      return { productId, quantity };
+    }),
+  );
 
-//     const [result] = await connection.execute(
-//       `INSERT INTO sales_product (${collumns}) VALUES (?, ?, ?)`,
-//       [],
-//     );
-//   });
-// };
+  return { id: insertId, itemsSold: sale };
+};
 
-// module.exports = {
-//   registerSale,
-// };
+module.exports = {
+  registerSale,
+};

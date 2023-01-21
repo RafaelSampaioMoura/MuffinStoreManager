@@ -25,12 +25,14 @@ const insert = async ({ name }) => {
   //   .map((_key) => "?")
   //   .join(", ");
 
-  const [{ insertId }] = await connection.execute(
+  const [result] = await connection.execute(
     'INSERT INTO products (name) VALUE(?)',
     [name],
   );
 
-  return insertId;
+  // console.log(result);
+
+  return result.insertId;
 };
 
 const update = async (productId, newProductName) => {
