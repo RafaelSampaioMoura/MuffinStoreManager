@@ -9,7 +9,7 @@ const {
   updateProduct,
 } = require("./mocks/product.model.mock");
 
-describe("Testando os modelos", function () {
+describe("Testando o productModel", function () {
   it('Testando função "listAll" do projectModel', async function () {
     //Arrange
     sinon.stub(connection, "execute").resolves([products]);

@@ -22,8 +22,6 @@ const getSaleById = async (saleId) => {
     [saleId],
   );
 
-  console.log(result);
-
   return camelize(result);
 };
 

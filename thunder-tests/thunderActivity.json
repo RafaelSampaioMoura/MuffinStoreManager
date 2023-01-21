@@ -41,12 +41,12 @@
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-01-19T12:54:47.320Z",
-    "modified": "2023-01-19T12:54:47.320Z",
+    "modified": "2023-01-21T20:13:19.839Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id\": \"1\",\n  \"name\": \"Martelo do Batman\"\n}",
+      "raw": "{\n  \"id\": \"1\",\n  \"name\": \"Martelo do Thor Stormbreaker\"\n}",
       "form": []
     },
     "tests": []
@@ -176,6 +176,25 @@
     "modified": "2023-01-21T19:49:37.938Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "ed396e38-ddab-4796-8ec8-eea90c873548",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/sales",
+    "url": "localhost:3000/sales",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-21T20:00:20.854Z",
+    "modified": "2023-01-21T20:00:20.854Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "form": []
+    },
     "tests": []
   }
 ]
