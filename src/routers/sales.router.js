@@ -5,6 +5,10 @@ const { salesController } = require('../controllers');
 
 const router = express.Router();
 
+router.get('/:id', salesController.getSaleById);
+
+router.get('/', salesController.getAllSales);
+
 router.post(
   '/',
   validateProductId,
