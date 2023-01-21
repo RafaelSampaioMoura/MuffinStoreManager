@@ -202,13 +202,19 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/sales/1",
-    "url": "localhost:3000/sales/1",
+    "url": "localhost:3000/products/search?q=Escudo",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-01-21T20:38:09.177Z",
-    "modified": "2023-01-21T20:50:16.572Z",
+    "modified": "2023-01-21T22:06:24.214Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Escudo",
+        "isPath": false
+      }
+    ],
     "body": {
       "type": "json",
       "raw": "[\n  {\"productId\":1,\"quantity\":1},\n  {\"productId\":2,\"quantity\":5}\n]",

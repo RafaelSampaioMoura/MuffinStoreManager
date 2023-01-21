@@ -56,7 +56,7 @@ const erase = async (productId) => {
 };
 
 const searchByName = async (name) => {
-  if (name.length === 0) {
+  if (!name || name.length === 0) {
     const [result] = await connection.execute('SELECT * FROM products');
 
     return result;

@@ -15,6 +15,7 @@ describe("Testando o productModel", function () {
     sinon.stub(connection, "execute").resolves([products]);
     //Act
     const result = await productsModel.listAll();
+    console.log(result);
     //Assert
     expect(result).to.be.deep.equal(products);
   });
@@ -56,6 +57,31 @@ describe("Testando o productModel", function () {
     const result = await productsModel.erase(1);
     //Assert
     expect(result).to.equal(1);
+  });
+
+  it("Testando busca por nome", async function () {
+    //Arrange
+    sinon.stub(connection, "execute").resolves([
+      {
+        id: 1,
+        name: "Martelo de Thor",
+      },
+    ]);
+    //Act
+    const result = await productsModel.searchByName("Martelo");
+    //Assert
+    expect(result).to.be.deep.equal({
+      id: 1,
+      name: "Martelo de Thor",
+    });
+  });
+
+  it("Testando busca com query vazio", async function () {
+    sinon.stub(connection, "execute").resolves([products]);
+
+    const result = await productsModel.searchByName("");
+
+    expect(result).to.be.deep.equal(products);
   });
 
   afterEach(function () {
