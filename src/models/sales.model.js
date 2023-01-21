@@ -44,8 +44,18 @@ const registerSale = async (salesArr) => {
   return { id: insertId, itemsSold: sale };
 };
 
+const eraseSale = async (saleId) => {
+  const [{ affectedRows }] = await connection.execute(
+    'DELETE FROM sales WHERE id = ?',
+    [saleId],
+  );
+
+  return affectedRows;
+};
+
 module.exports = {
   registerSale,
   getAllSales,
   getSaleById,
+  eraseSale,
 };

@@ -51,8 +51,19 @@ const registerSale = async (salesArr) => {
   return { type: null, message: addedSale };
 };
 
+const eraseSale = async (salesId) => {
+  const affectedRows = await salesModel.eraseSale(salesId);
+
+  if (affectedRows === 0) {
+    return { type: 'SALE_NOT_FOUND', message: SALE_NOT_FOUND };
+  }
+
+  return { type: null, message: '' };
+};
+
 module.exports = {
   registerSale,
   getAllSales,
   getSaleById,
+  eraseSale,
 };

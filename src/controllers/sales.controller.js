@@ -30,8 +30,19 @@ const registerSale = async (req, res) => {
   }
 };
 
+const eraseProduct = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await salesService.eraseSale(id);
+
+  if (type) {
+    return res.status(404).json({ message: 'Sale not found' });
+  }
+  res.status(204).json(message);
+};
+
 module.exports = {
   registerSale,
   getAllSales,
   getSaleById,
+  eraseProduct,
 };

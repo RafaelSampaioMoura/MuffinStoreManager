@@ -5,6 +5,8 @@ const { salesController } = require('../controllers');
 
 const router = express.Router();
 
+router.delete('/:id', salesController.eraseProduct);
+
 router.get('/:id', salesController.getSaleById);
 
 router.get('/', salesController.getAllSales);
