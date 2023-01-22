@@ -45,11 +45,11 @@ const updateProduct = async (id, name) => {
   // console.log(invalidName);
   if (invalidName.type) return invalidName;
 
-  const affectedRows = await productsModel.update(id, name);
+  await productsModel.update(id, name);
   // console.log(updatedProduct);
-  if (affectedRows !== 1) {
-    return { type: 'PRODUCT_NOT_FOUND', message: PRODUCT_NOT_FOUND };
-  }
+  // if (affectedRows !== 1) {
+  //   return { type: 'PRODUCT_NOT_FOUND', message: PRODUCT_NOT_FOUND };
+  // }
 
   return { type: null, message: { id, name } };
 };

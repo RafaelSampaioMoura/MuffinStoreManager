@@ -11,7 +11,6 @@ const {
   nonExistentId,
   invalidName,
   valId,
-  updatedProduct,
 } = require("./mocks/products.service.mock");
 
 describe("Testando os serviços", function () {
@@ -85,12 +84,12 @@ describe("Testando o cadastro de um novo produto", async function () {
   it("Retorna o ID do novo produto cadastrado", async function () {
     //Arrange
     sinon.stub(productsModel, "insert").resolves(4);
-    sinon.stub(productsModel, "listById").resolves(allProducts[0]);
+    sinon.stub(productsModel, "listById").resolves(allProducts[3]);
     //Act
     const result = await productsService.createProduct(validName);
     //Assert
     expect(result.type).to.equal(null);
-    expect(result.message).to.deep.equal(allProducts[0]);
+    expect(result.message).to.deep.equal(allProducts[3]);
   });
 
   afterEach(function () {
@@ -117,7 +116,7 @@ describe("Testando atualização de um produto", function () {
     expect(result.message).to.equal("Product not found");
   });
 
-  it("Retorna um erro ao tentar atualiza um produto com nome inválido", async function () {
+  it("Retorna um erro ao tentar atualizar um produto com nome inválido", async function () {
     //Arrange
     //Act
     const result = await productsService.updateProduct(valId, invalidName);
@@ -194,6 +193,30 @@ describe("Testando a deleção de um produto", function () {
   });
 
   afterEach(function () {
+    sinon.restore();
+  });
+});
+
+describe("Testando a busca por nome", function () {
+  it("Retorna todos os produtos se query estiver vazio", async function () {
+    sinon.stub(productsModel, "searchByName").resolves(allProducts);
+
+    const result = await productsService.searchByName("");
+
+    expect(result.type).to.be.null;
+    expect(result.message).to.be.deep.equal(allProducts);
+  });
+
+  it("Retorna todos os produtos que dão match com o query", async function () {
+    sinon.stub(productsModel, "searchByName").resolves(allProducts[0]);
+
+    const result = await productsService.searchByName("Martelo");
+
+    expect(result.type).to.be.null;
+    expect(result.message).to.be.deep.equal(allProducts[0]);
+  });
+
+  this.afterEach(function () {
     sinon.restore();
   });
 });

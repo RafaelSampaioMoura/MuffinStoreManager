@@ -187,12 +187,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-01-21T20:00:20.854Z",
-    "modified": "2023-01-21T20:00:20.854Z",
+    "modified": "2023-01-22T11:57:26.826Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": -1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": \"-5\"\n  }\n]",
       "form": []
     },
     "tests": []

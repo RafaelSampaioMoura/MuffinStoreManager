@@ -7,15 +7,23 @@ const valId = 1;
 
 const allProducts = [
   {
-    id: 4,
-    name: validName,
+    id: 1,
+    name: "Martelo de Thor",
+  },
+  {
+    id: 2,
+    name: "Traje de encolhimento",
+  },
+  {
+    id: 3,
+    name: "Escudo do Capitão América",
   },
 ];
 
 const updatedProduct = {
   id: 1,
   name: validName,
-}
+};
 
 module.exports = {
   invalidValue,
@@ -25,5 +33,5 @@ module.exports = {
   nonExistentId,
   invalidName,
   valId,
-  updatedProduct
+  updatedProduct,
 };

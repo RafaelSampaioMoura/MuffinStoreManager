@@ -54,7 +54,6 @@ const eraseSale = async (saleId) => {
 };
 
 const updateSale = async (id, salesArr) => {
-  console.log(id);
   const sale = await Promise.all(
     salesArr.map(async ({ productId, quantity }) => {
       await connection.execute(

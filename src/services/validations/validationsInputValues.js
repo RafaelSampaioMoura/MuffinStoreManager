@@ -21,19 +21,22 @@ const validateProductName = (name) => {
 const validateSaleObject = (sale) => {
   const error = addSaleProduct.validate(sale);
   if (error) {
-    return { type: 'INVALID_VALUE', message: error.message };
+    console.log(error);
+    return { type: 'INVALID_VALUE', message: error.error };
   }
 
   return { type: null, message: '' };
 };
 
 const validateSalesArray = (salesArr) => {
-  salesArr.map((sale) => {
+  const newSalesArr = salesArr.map((sale) => {
     const error = validateSaleObject(sale);
     if (error.type) return error;
 
     return sale;
   });
+
+  return newSalesArr;
 };
 
 module.exports = {

@@ -32,7 +32,7 @@ const getSaleById = async (saleId) => {
 };
 
 const registerSale = async (salesArr) => {
-  schema.validateSalesArray(salesArr);
+  // schema.validateSalesArray(salesArr);
 
   const allProductsExist = await Promise.all(
     salesArr.map(async ({ productId }) => productExist(productId)),
@@ -49,7 +49,7 @@ const registerSale = async (salesArr) => {
 const eraseSale = async (salesId) => {
   const affectedRows = await salesModel.eraseSale(salesId);
 
-  if (affectedRows === 0) {
+  if (!affectedRows) {
     return { type: 'SALE_NOT_FOUND', message: SALE_NOT_FOUND };
   }
 
@@ -57,7 +57,7 @@ const eraseSale = async (salesId) => {
 };
 
 const updateSale = async (id, salesArr) => {
-  schema.validateSalesArray(salesArr);
+  // schema.validateSalesArray(salesArr);
 
   const allProductsExist = await Promise.all(
     salesArr.map(async ({ productId }) => productExist(productId)),
@@ -82,4 +82,5 @@ module.exports = {
   getSaleById,
   eraseSale,
   updateSale,
+  productExist,
 };
